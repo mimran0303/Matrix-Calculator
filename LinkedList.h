@@ -51,11 +51,13 @@ public:
 		{
 			if (i == position) //checks if position is within range
 			{
+				cout << current->data << endl;
 				return current;
 			}
 			current = current->next; //next current
 			i++; //increments count
 		}
+		return NULL;
 	}
 
 	void Delete(int position)
@@ -70,6 +72,7 @@ public:
 				Node* after = current->next;//we define the node After, which comes after the Target
 				previous->next = after;//now we have Previous point to After, ingonring the Target
 				delete current;//Target is now deleted
+				return;
 			}
 			i++;//increment count
 			previous = current;//pointing at same node
