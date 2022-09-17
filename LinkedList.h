@@ -6,11 +6,9 @@ using namespace std;
 
 class Node
 {
-
 public:
 	int data;
 	Node* next;
-
 	Node(int d)
 	{
 		data = d;
@@ -27,6 +25,14 @@ public:
 	void AddtoTail(int d)
 	{
 		Node* n = new Node(d); //created new tail
+		// Special Condition: Initially when nothing in list
+		if (head == NULL)
+		{
+			head = n;
+			tail = n;
+			return;
+		}
+		// General Case when at least one or more nodes exist in list:
 		tail->next = n; //new tail point at old tail
 		tail = n;
 		n->next = NULL;
