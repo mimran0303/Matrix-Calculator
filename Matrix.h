@@ -8,11 +8,11 @@ using namespace std;
 class MatrixNode
 {
 public:
-	LinkedList* row;
+	Row* row;
 	MatrixNode* next;
 	MatrixNode()
 	{
-		row = new LinkedList();
+		row = new Row();
 		next = NULL;
 	}
 };
@@ -46,7 +46,18 @@ public:
 
 	}
 
-	MatrixNode* FindRow(int position)
+	Row* GetRow(int position) //
+	{
+		MatrixNode* node = Find(position);
+		if (node == NULL)
+		{
+			return NULL;
+		}
+		else
+			return node->row;
+	}
+
+	MatrixNode* Find(int position)
 	{
 		int i = 0; //start at position 0
 		MatrixNode* current = head; //head is first node
@@ -54,7 +65,7 @@ public:
 		{
 			if (i == position) //checks if position is within range
 			{
-				cout << current->row << endl;
+				// cout << current->row << endl;
 				return current;
 			}
 			current = current->next; //next current

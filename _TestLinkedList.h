@@ -4,21 +4,21 @@
 
 void TestAdd() {
 	cout << ">>>> Testing Add" << endl;
-	LinkedList* list = new LinkedList();
-	list->AddtoTail(10);
-	list->AddtoTail(20);
-	list->AddtoTail(30);
-	list->AddtoTail(40);
+	Row* list = new Row();
+	list->AddColumn(10);
+	list->AddColumn(20);
+	list->AddColumn(30);
+	list->AddColumn(40);
 	list->Print();
 }
 
 void TestDelete() {
 	cout << ">>> Testing Delete" << endl;
-	LinkedList* list = new LinkedList();
-	list->AddtoTail(10);
-	list->AddtoTail(20);
-	list->AddtoTail(30);
-	list->AddtoTail(40);
+	Row* list = new Row();
+	list->AddColumn(10);
+	list->AddColumn(20);
+	list->AddColumn(30);
+	list->AddColumn(40);
 	cout << "Before Delete" << endl;
 	list->Print();
 
@@ -29,22 +29,22 @@ void TestDelete() {
 
 void TestFind() {
 	cout << ">>> Testing Find" << endl;
-	LinkedList* list = new LinkedList();
-	list->AddtoTail(10);
-	list->AddtoTail(20);
-	list->AddtoTail(30);
-	list->AddtoTail(40);
+	Row* list = new Row();
+	list->AddColumn(10);
+	list->AddColumn(20);
+	list->AddColumn(30);
+	list->AddColumn(40);
 	list->Print();
 
-	Node* f = list->FindNode(1);
+	Column* f = list->FindNode(1);
 	if (f == NULL)
 		cout << "Not Found" << endl;
 	else
-		cout << "Found Node: " << f->data << endl;
+		cout << "Found Node: " << f->Value << endl;
 
 	f = list->FindNode(100);
 	if (f == NULL)
 		cout << "Not Found" << endl;
 	else
-		cout << "Found Node: " << f->data << endl;
+		cout << "Found Node: " << f->Value << endl;
 }
