@@ -1,41 +1,44 @@
 #pragma once
 
 #include<iostream>
+#include "LinkedList.h"
 
 using namespace std;
 
-class Node
+class MatrixNode
 {
 public:
-	int data;
-	Node* next;
-	Node(int d)
+	LinkedList* row;
+	MatrixNode* next;
+	MatrixNode()
 	{
-		data = d;
+		row = new LinkedList();
+		next = NULL;
 	}
 };
 
-class LinkedList
+class Matrix
 {
 public:
 
-	Node* head;
-	Node* tail;
+	MatrixNode* head;
+	MatrixNode* tail;
 
-	void AddtoTail(int d)
+	MatrixNode* AddRow()
 	{
-		Node* n = new Node(d); //created new tail
+		MatrixNode* n = new MatrixNode(); //created new tail
 		// Special Condition: Initially when nothing in list
 		if (head == NULL)
 		{
 			head = n;
 			tail = n;
-			return;
+			return n;
 		}
 		// General Case when at least one or more nodes exist in list:
 		tail->next = n; //new tail point at old tail
 		tail = n;
 		n->next = NULL;
+		return n;
 	}
 
 	void SetAt()
@@ -43,15 +46,15 @@ public:
 
 	}
 
-	Node* FindNode(int position)
+	MatrixNode* FindRow(int position)
 	{
 		int i = 0; //start at position 0
-		Node* current = head; //head is first node
+		MatrixNode* current = head; //head is first node
 		while (current != NULL)//current CANNOT equal to NULL
 		{
 			if (i == position) //checks if position is within range
 			{
-				cout << current->data << endl;
+				cout << current->row << endl;
 				return current;
 			}
 			current = current->next; //next current
@@ -60,16 +63,16 @@ public:
 		return NULL;
 	}
 
-	void Delete(int position)
+	void DeleteRow(int position)
 	{
-		Node* previous = head; //node that is before targeted nodes, pointing to head (it needs a starting point)
-		Node* current = head;//target node, pointing to head (it needs a starting point)
+		MatrixNode* previous = head; //node that is before targeted nodes, pointing to head (it needs a starting point)
+		MatrixNode* current = head;//target node, pointing to head (it needs a starting point)
 		int i = 0;
-		while (current!=NULL)
+		while (current != NULL)
 		{
 			if (i == position)//checks if position is within range
 			{
-				Node* after = current->next;//we define the node After, which comes after the Target
+				MatrixNode* after = current->next;//we define the node After, which comes after the Target
 				previous->next = after;//now we have Previous point to After, ingonring the Target
 				delete current;//Target is now deleted
 				return;
@@ -82,13 +85,12 @@ public:
 
 	void Print()
 	{
-		Node* current = head;//starts at head
+		MatrixNode* current = head;//starts at head
 		while (current != NULL)
 		{
-			cout << current->data << " ";//prints data in current
+			current->row->Print();
 			current = current->next; //goes to next node
 		}
-		cout << endl;
 	}
 };
 
