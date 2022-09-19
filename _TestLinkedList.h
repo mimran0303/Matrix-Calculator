@@ -23,7 +23,7 @@ void TestDelete() {
 	list->Print();
 
 	cout << "After Delete" << endl;
-	list->Delete(1);
+	list->DeleteColumn(1);
 	list->Print();
 }
 

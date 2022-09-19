@@ -62,7 +62,7 @@ public:
 		return NULL;
 	}
 
-	void Delete(int position)
+	void DeleteColumn(int position)
 	{
 		Column* previous = head; //node that is before targeted nodes, pointing to head (it needs a starting point)
 		Column* current = head;//target node, pointing to head (it needs a starting point)
@@ -71,6 +71,13 @@ public:
 		{
 			if (i == position)//checks if position is within range
 			{
+				if (i == 0)
+				{
+					Column* oldhead = head;//define old head
+					head = head->next;//point to new head
+					delete oldhead;
+					return;
+				}
 				Column* after = current->next;//we define the node After, which comes after the Target
 				previous->next = after;//now we have Previous point to After, ingonring the Target
 				delete current;//Target is now deleted

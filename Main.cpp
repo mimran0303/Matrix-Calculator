@@ -10,5 +10,7 @@ int main()
 	//TestAdd();
 	//TestDelete();
 	//TestFind();
-	TestMatrix();
+	//TestMatrixDeleteColumn();
+	//TestDeleteColumns();
+	TestDeleteRowandColumns();
 }

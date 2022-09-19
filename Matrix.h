@@ -41,11 +41,6 @@ public:
 		return n;
 	}
 
-	void SetAt()
-	{
-
-	}
-
 	Row* GetRow(int position) //
 	{
 		MatrixNode* node = Find(position);
@@ -83,14 +78,35 @@ public:
 		{
 			if (i == position)//checks if position is within range
 			{
+				if (i == 0) // special case
+				{
+					MatrixNode* oldhead = head;//defining old head
+					head = head->next;//now make head point to SecondNode
+					delete oldhead;//delete head
+					return;
+				}
+
+				// General Case
 				MatrixNode* after = current->next;//we define the node After, which comes after the Target
-				previous->next = after;//now we have Previous point to After, ingonring the Target
-				delete current;//Target is now deleted
+				previous->next = after;//now we have Previous point to After, ingnoring the Target
+				delete current;//Target is now delete
 				return;
+
+				
 			}
 			i++;//increment count
 			previous = current;//pointing at same node
 			current = current->next;//Current/Target now points to node After
+		}
+	}
+
+	void DeleteColumns(int position)
+	{
+		MatrixNode* current = head;//starting at head
+		while (current!=NULL)
+		{
+			current->row->DeleteColumn(position);
+			current = current->next;
 		}
 	}
 
