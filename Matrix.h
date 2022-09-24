@@ -57,6 +57,12 @@ public:
 		return n;
 	}
 
+	Column* CellAt(int row, int col) 
+	{
+		Column* cell = GetRow(row)->GetColumn(col);
+		return cell;
+	}
+
 	Row* GetRow(int position) //
 	{
 		MatrixNode* node = Find(position);

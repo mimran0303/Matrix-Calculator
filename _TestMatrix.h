@@ -37,16 +37,19 @@ void TestMatrixPrint()
 void TestGetSetColumn()
 {
 	Matrix* m = CreateMatrix();
-	cout << "Set Column " << endl;
-	m->GetRow(1)->GetColumn(1)->Value = 239;
-
 	m->Print();
+
+	cout << "Set value at row: 1 and column:1 => 999:" << endl;
+	m->CellAt(1,1)->Value = 999;
+	m->Print();
+	cout << "Get value at row: 1 and column:1 is:" << m->CellAt(1, 1)->Value << endl;
 
 	cout << "Get Column Value " << endl;
 	cout << endl;
 	int v = m->GetRow(0)->GetColumn(2)->Value;
 	cout << "Value is " << v << endl;
 	cout << endl;	
+
 }
 
 void TestMatrixDeleteRow()
