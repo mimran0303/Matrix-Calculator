@@ -13,5 +13,6 @@ int main()
 	//TestMatrixDeleteColumn();
 	//TestDeleteColumns();
 	//TestDeleteRowandColumns();
-	TestGetSetColumn();
+	//TestGetSetColumn();
+	TestMatrix();
 }

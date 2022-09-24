@@ -3,6 +3,7 @@
 #include<iostream>
 #include "LinkedList.h"
 
+
 using namespace std;
 
 class MatrixNode
@@ -33,6 +34,27 @@ public:
 	MatrixNode* head;
 	MatrixNode* tail;
 
+	Matrix()
+	{
+		head = NULL;
+		tail = NULL;
+	}
+
+	Matrix(int rowsize, int columnsize)
+	{
+		head = NULL;
+		tail = NULL;
+		for (int i = 0; i < rowsize; i++)
+		{
+			MatrixNode* r = AddRow();
+
+			for (int j = 0; j < columnsize; j++)
+			{
+				r->row->AddColumn(0);
+			}
+		}
+	}
+
 	MatrixNode* AddRow()
 	{
 		MatrixNode* n = new MatrixNode(); //created new tail
@@ -56,7 +78,6 @@ public:
 		n->next = NULL;
 		return n;
 	}
-
 	Column* CellAt(int row, int col) 
 	{
 		Column* cell = GetRow(row)->GetColumn(col);

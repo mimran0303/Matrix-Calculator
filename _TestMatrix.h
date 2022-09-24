@@ -106,5 +106,12 @@ void TestDeleteRowandColumns()
 	c->Print();
 }
 
+void TestMatrix()
+{
+	cout << "test matrix" << endl;
+	Matrix* m = new Matrix(4,4);
+	m->Print();
+}
+
 
 
