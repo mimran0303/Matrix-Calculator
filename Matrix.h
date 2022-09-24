@@ -8,6 +8,7 @@ using namespace std;
 class MatrixNode
 {
 public:
+
 	Row* row;
 	MatrixNode* next;
 	MatrixNode()
@@ -15,18 +16,33 @@ public:
 		row = new Row();
 		next = NULL;
 	}
+
+	MatrixNode* Clone()
+	{
+		MatrixNode* copy = new MatrixNode(); //new node
+		copy->row = row->Clone();//Clone is now assigned to new node
+		return copy;
+	}
 };
 
 class Matrix
 {
 public:
 
+	int length = 0;
 	MatrixNode* head;
 	MatrixNode* tail;
 
 	MatrixNode* AddRow()
 	{
 		MatrixNode* n = new MatrixNode(); //created new tail
+		AddRow(n);
+		return n;
+	}
+	
+	MatrixNode* AddRow(MatrixNode* n)
+	{
+		length++;
 		// Special Condition: Initially when nothing in list
 		if (head == NULL)
 		{
@@ -78,6 +94,7 @@ public:
 		{
 			if (i == position)//checks if position is within range
 			{
+				length--;
 				if (i == 0) // special case
 				{
 					MatrixNode* oldhead = head;//defining old head
@@ -118,6 +135,19 @@ public:
 			current->row->Print();
 			current = current->next; //goes to next node
 		}
+	}
+
+	Matrix* Clone()
+	{
+		Matrix* copy = new Matrix(); //making copy
+		MatrixNode* current = head; //we have current
+		while (current != NULL)
+		{
+			MatrixNode* c = current->Clone();//clone matrix node
+			copy->AddRow(c);//row with all matrix node is copied
+			current = current->next;//next in matrix node
+		}
+		return copy;
 	}
 };
 

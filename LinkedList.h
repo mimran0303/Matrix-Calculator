@@ -21,6 +21,7 @@ class Row //Linkedlist
 {
 public:
 
+	int length=0;
 	Column* head;
 	Column* tail;
 
@@ -28,6 +29,7 @@ public:
 	{
 		Column* n = new Column(d); //created new tail
 		// Special Condition: Initially when nothing in list
+		length++;
 		if (head == NULL)
 		{
 			head = n;
@@ -71,6 +73,7 @@ public:
 		{
 			if (i == position)//checks if position is within range
 			{
+				length--;
 				if (i == 0)
 				{
 					Column* oldhead = head;//define old head
@@ -98,6 +101,18 @@ public:
 			current = current->next; //goes to next node
 		}
 		cout << endl;
+	}
+
+	Row* Clone() //clones row
+	{
+		Row* rowcopy = new Row(); //create rowcopy
+		Column* current = head; //traverse
+		while (current != NULL) //adds new cells as it traverses
+		{
+			rowcopy->AddColumn(current->Value); //as it traverses through columns it copies into clone
+			current = current->next; //tells it to traverse
+		}
+		return rowcopy;
 	}
 };
 

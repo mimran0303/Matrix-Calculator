@@ -87,11 +87,21 @@ void TestDeleteRowandColumns()
 {
 	Matrix* m = CreateMatrix();
 	m->Print();
+	cout << "column length:" << m->length << endl;
+	cout << "row length:" << m->GetRow(0)->length << endl;
 	cout << endl;
 	cout << "Delete target column" << endl;
 	cout << endl;
 	m->DeleteColumns(1);
 	m->DeleteRow(1);
 	m->Print();
+	cout << "column length:" << m->length << endl;
+	cout << "row length:" << m->GetRow(0)->length << endl;
+	cout << endl;
+	cout << "Clone Matrix" << endl;
+	Matrix* c = m->Clone();
+	c->Print();
 }
+
+
 
