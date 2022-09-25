@@ -2,6 +2,7 @@
 
 #include "Matrix.h"
 #include "LinkedList.h"
+#include"Calculator.h"
 
 Matrix* CreateMatrix()
 {
@@ -88,6 +89,7 @@ void TestDeleteColumns()
 
 void TestDeleteRowandColumns()
 {
+	cout << "matrix m" << endl;
 	Matrix* m = CreateMatrix();
 	m->Print();
 	cout << "column length:" << m->length << endl;
@@ -111,6 +113,34 @@ void TestMatrix()
 	cout << "test matrix" << endl;
 	Matrix* m = new Matrix(4,4);
 	m->Print();
+}
+
+void TestAddMatrixes()
+{
+	cout << "adding matrix m twice" << endl;
+	cout << "matrix a" << endl;
+	Matrix* m = CreateMatrix();
+	m->Print();
+	cout << "matrix b" << endl;
+	Matrix* n = CreateMatrix();
+	n->Print();
+	cout << "matrix c" << endl;
+	Matrix* c = Calculator::AddMatrixes(m, n);
+	c->Print();
+}
+
+void TestSubMatrixes()
+{
+	cout << "subtract matrix m by itself" << endl;
+	cout << "matrix a" << endl;
+	Matrix* m = CreateMatrix();
+	m->Print();
+	cout << "matrix b" << endl;
+	Matrix* n = CreateMatrix();
+	n->Print();
+	cout << "matrix c" << endl;
+	Matrix* c = Calculator::SubMatrixes(m, n);
+	c->Print();
 }
 
 

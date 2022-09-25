@@ -176,5 +176,6 @@ public:
 		}
 		return copy;
 	}
+	
 };
 

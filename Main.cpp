@@ -7,12 +7,13 @@ using namespace std;
 
 int main()
 {
-	//TestAdd();
 	//TestDelete();
 	//TestFind();
 	//TestMatrixDeleteColumn();
 	//TestDeleteColumns();
 	//TestDeleteRowandColumns();
 	//TestGetSetColumn();
-	TestMatrix();
+	//TestMatrix();
+	//TestAddMatrixes();
+	TestSubMatrixes();
 }
