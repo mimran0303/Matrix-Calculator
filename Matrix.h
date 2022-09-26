@@ -10,30 +10,32 @@ class MatrixNode
 {
 public:
 
-	Row* row;
+	LinkedList* linkedlist;
 	MatrixNode* next;
 	MatrixNode()
 	{
-		row = new Row();
+		linkedlist = new LinkedList();
 		next = NULL;
 	}
 
 	MatrixNode* Clone()
 	{
 		MatrixNode* copy = new MatrixNode(); //new node
-		copy->row = row->Clone();//Clone is now assigned to new node
+		copy->linkedlist = linkedlist->Clone();//Clone is now assigned to new node
 		return copy;
 	}
 };
 
 class Matrix
 {
-public:
-
+private:
 	int length = 0;
+
+private:
 	MatrixNode* head;
 	MatrixNode* tail;
 
+public:
 	Matrix()
 	{
 		head = NULL;
@@ -50,9 +52,21 @@ public:
 
 			for (int j = 0; j < columnsize; j++)
 			{
-				r->row->AddColumn(0);
+				r->linkedlist->AddColumn(0);
 			}
 		}
+	}
+
+	int RowCount()
+	{
+		return length;
+	}
+
+	int ColumnCount()
+	{
+		if (GetRow(0) == NULL)
+			return 0;
+		return GetRow(0)->Count();
 	}
 
 	MatrixNode* AddRow()
@@ -78,13 +92,14 @@ public:
 		n->next = NULL;
 		return n;
 	}
-	Column* CellAt(int row, int col) 
+
+	Node* CellAt(int row, int col) 
 	{
-		Column* cell = GetRow(row)->GetColumn(col);
+		Node* cell = GetRow(row)->GetColumn(col);
 		return cell;
 	}
 
-	Row* GetRow(int position) //
+	LinkedList* GetRow(int position) //
 	{
 		MatrixNode* node = Find(position);
 		if (node == NULL)
@@ -92,7 +107,7 @@ public:
 			return NULL;
 		}
 		else
-			return node->row;
+			return node->linkedlist;
 	}
 
 	MatrixNode* Find(int position)
@@ -149,7 +164,7 @@ public:
 		MatrixNode* current = head;//starting at head
 		while (current!=NULL)
 		{
-			current->row->DeleteColumn(position);
+			current->linkedlist->DeleteColumn(position);
 			current = current->next;
 		}
 	}
@@ -159,7 +174,7 @@ public:
 		MatrixNode* current = head;//starts at head
 		while (current != NULL)
 		{
-			current->row->Print();
+			current->linkedlist->Print();
 			current = current->next; //goes to next node
 		}
 	}

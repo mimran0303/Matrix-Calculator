@@ -11,19 +11,19 @@ Matrix* CreateMatrix()
 	Matrix* m = new Matrix();
 
 	MatrixNode* n1 = m->AddRow();
-	n1->row->AddColumn(5);
-	n1->row->AddColumn(3);
-	n1->row->AddColumn(2);
+	n1->linkedlist->AddColumn(5);
+	n1->linkedlist->AddColumn(3);
+	n1->linkedlist->AddColumn(2);
 
 	MatrixNode* n2 = m->AddRow();
-	n2->row->AddColumn(0);
-	n2->row->AddColumn(1);
-	n2->row->AddColumn(0);
+	n2->linkedlist->AddColumn(0);
+	n2->linkedlist->AddColumn(1);
+	n2->linkedlist->AddColumn(0);
 
 	MatrixNode* n3 = m->AddRow();
-	n3->row->AddColumn(0);
-	n3->row->AddColumn(0);
-	n3->row->AddColumn(1);
+	n3->linkedlist->AddColumn(0);
+	n3->linkedlist->AddColumn(0);
+	n3->linkedlist->AddColumn(1);
 
 	return m;
 }
@@ -92,16 +92,16 @@ void TestDeleteRowandColumns()
 	cout << "matrix m" << endl;
 	Matrix* m = CreateMatrix();
 	m->Print();
-	cout << "column length:" << m->length << endl;
-	cout << "row length:" << m->GetRow(0)->length << endl;
+	cout << "column length:" << m->ColumnCount() << endl;
+	cout << "row length:" << m->RowCount() << endl;
 	cout << endl;
 	cout << "Delete target column" << endl;
 	cout << endl;
 	m->DeleteColumns(1);
 	m->DeleteRow(1);
 	m->Print();
-	cout << "column length:" << m->length << endl;
-	cout << "row length:" << m->GetRow(0)->length << endl;
+	cout << "column length:" << m->ColumnCount() << endl;
+	cout << "row length:" << m->RowCount() << endl;
 	cout << endl;
 	cout << "Clone Matrix" << endl;
 	Matrix* c = m->Clone();
@@ -143,5 +143,26 @@ void TestSubMatrixes()
 	c->Print();
 }
 
+void TestTranspose()
+{
+	cout << "original" << endl;
+	Matrix* n = CreateMatrix();
+	n->Print();
+	cout << "Transpose" << endl;
+	Matrix* c = Calculator::Transpose(n);
+	c->Print();
+}
 
+void TestMultiply()
+{
+	cout << "first matrix" << endl;
+	Matrix* n = CreateMatrix();
+	n->Print();
+	cout << "second matrix" << endl;
+	Matrix* m = CreateMatrix();
+	m->Print();
+	cout << "product" << endl;
+	Matrix* c = Calculator::Multiply(n, m);
+	c->Print();
+}
 

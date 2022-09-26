@@ -4,7 +4,7 @@
 
 void TestAdd() {
 	cout << ">>>> Testing Add" << endl;
-	Row* list = new Row();
+	LinkedList* list = new LinkedList();
 	list->AddColumn(10);
 	list->AddColumn(20);
 	list->AddColumn(30);
@@ -14,7 +14,7 @@ void TestAdd() {
 
 void TestDelete() {
 	cout << ">>> Testing Delete" << endl;
-	Row* list = new Row();
+	LinkedList* list = new LinkedList();
 	list->AddColumn(10);
 	list->AddColumn(20);
 	list->AddColumn(30);
@@ -29,14 +29,14 @@ void TestDelete() {
 
 void TestFind() {
 	cout << ">>> Testing Find" << endl;
-	Row* list = new Row();
+	LinkedList* list = new LinkedList();
 	list->AddColumn(10);
 	list->AddColumn(20);
 	list->AddColumn(30);
 	list->AddColumn(40);
 	list->Print();
 
-	Column* f = list->FindNode(1);
+	Node* f = list->FindNode(1);
 	if (f == NULL)
 		cout << "Not Found" << endl;
 	else

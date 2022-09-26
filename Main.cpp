@@ -15,5 +15,7 @@ int main()
 	//TestGetSetColumn();
 	//TestMatrix();
 	//TestAddMatrixes();
-	TestSubMatrixes();
+	//TestSubMatrixes();
+	//TestTranspose();
+	TestMultiply();
 }
