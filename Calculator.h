@@ -59,22 +59,18 @@ public:
 		}
 		return p;
 	}
+
 	static Matrix* Multiply(Matrix* a, Matrix* b)
 	{
 		int max_row = a->RowCount();
 		int max_column = a->ColumnCount();
 		
-		if (max_row != max_column)
-		{
-			cout << "The operation was not possible" << endl;
-			return 0;
-		}
 		Matrix* result = new Matrix(max_row, max_column);
 		for (int r=0;r<max_row;r++)
 		{
 			for (int c=0;c<max_column;c++)
 			{
-				result->CellAt(c, r)->Value = FindProduct(a,b,r,c);
+				result->CellAt(r, c)->Value = FindProduct(a,b,r,c);
 			}
 		}
 		return result;
