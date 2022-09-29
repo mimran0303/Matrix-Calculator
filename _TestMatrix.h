@@ -16,13 +16,13 @@ Matrix* CreateMatrix()
 	n1->linkedlist->AddColumn(2);
 
 	MatrixNode* n2 = m->AddRow();
-	n2->linkedlist->AddColumn(0);
 	n2->linkedlist->AddColumn(1);
-	n2->linkedlist->AddColumn(0);
+	n2->linkedlist->AddColumn(2);
+	n2->linkedlist->AddColumn(5);
 
 	MatrixNode* n3 = m->AddRow();
-	n3->linkedlist->AddColumn(0);
-	n3->linkedlist->AddColumn(0);
+	n3->linkedlist->AddColumn(2);
+	n3->linkedlist->AddColumn(9);
 	n3->linkedlist->AddColumn(1);
 
 	return m;
@@ -164,5 +164,15 @@ void TestMultiply()
 	cout << "product" << endl;
 	Matrix* c = Calculator::Multiply(n, m);
 	c->Print();
+}
+
+void TestDeterminant()
+{
+	cout << "matrix" << endl;
+	Matrix* n = CreateMatrix();
+	n->Print();
+	cout << "determinant" << endl;
+	int result = Calculator::Determinant(n);
+	cout <<"result: "<< result << endl;
 }
 

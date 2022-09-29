@@ -50,6 +50,7 @@ public:
 		}
 		return c;
 	}
+private:
 	static int FindProduct(Matrix* a, Matrix* b, int rowofa, int colofb)
 	{
 		int p = 0;
@@ -59,7 +60,7 @@ public:
 		}
 		return p;
 	}
-
+public:
 	static Matrix* Multiply(Matrix* a, Matrix* b)
 	{
 		int max_row = a->RowCount();
@@ -94,9 +95,51 @@ public:
 			}
 		}
 		return c;
-	}
-	static Matrix* DetMatrixes(Matrix* a)
+	} 
+public:
+	static int GetCofactor(Matrix* a)//in this function we look at column and row and do calculations for cofactor
 	{
+		int max_row = a->RowCount();
+		int max_column = a->ColumnCount();
+		int result1 = 1;
+		int result2 = 1;
 
+		for (int i = 0; i < a->ColumnCount(); i++)
+		{
+			result1 = result1 * a->CellAt(i,i)->Value; //result is 0
+		}
+
+		for (int j = 0; j < a->ColumnCount(); j++)
+		{
+			result2 = result2 * a->CellAt(j, max_column - j - 1)->Value;
+		}
+
+		return(result1 - result2);
+	}
+
+	static int Determinant(Matrix* a) //Delete Column and Delete Row will be used?? ... recursion?
+	{
+		int max_row = a->RowCount();
+		int max_column = a->ColumnCount();
+		
+		int result = 0;
+
+		if (max_row!=max_column||(max_row<=1 && max_column<=1))//special case, matrix must be square, therefore rows and columns must be equal
+		{
+			cout << "The operation was not possible" << endl;
+			return NULL;
+		}
+		
+		for (int j = 0; j < max_column; j++)
+		{
+			Matrix*b=a->Clone();
+			b->DeleteRow(0);
+			b->DeleteColumns(j);
+			int exp = pow(-1, (j + 2));
+			int targetNumber = a->CellAt(0, j)->Value;
+			int cofactor = GetCofactor(b);
+			result = result + exp * targetNumber * cofactor; // -1 or 1 * value at target node in row 0 * Cofactor
+		}
+		return result;
 	}
 };

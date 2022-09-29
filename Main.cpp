@@ -17,5 +17,6 @@ int main()
 	//TestAddMatrixes();
 	//TestSubMatrixes();
 	//TestTranspose();
-	TestMultiply();
+	//TestMultiply();
+	TestDeterminant();
 }
