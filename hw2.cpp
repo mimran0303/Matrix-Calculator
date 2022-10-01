@@ -3,11 +3,13 @@
 #include<ostream>
 #include <iomanip> 
 #include <ctype.h>
-#include<string>
+#include<string.h>
+#include <stdio.h>
 #include<string.h>
 #include<algorithm>
 #include<sstream>
 #include<iostream>
+#include <math.h>
 
 using namespace std;
 const bool verbose = false;
@@ -503,7 +505,7 @@ public:
 		if (max_row != max_column || (max_row <= 1 && max_column <= 1))//special case, matrix must be square, therefore rows and columns must be equal
 		{
 			cout << "The operation was not possible because Row Count and Column Count has to be same" << endl;
-			return NULL;
+			return -1;
 		}
 
 		for (int j = 0; j < max_column; j++)
@@ -638,7 +640,7 @@ int main(int argc, char* argv[])
 	char* program = argv[0];
 	char* command = argv[1];
 
-	if (_stricmp(command, "add") == 0)
+	if (strncasecmp(command, "add", 3) == 0)
 	{
 		char* file_a = argv[2];
 		char* file_b = argv[3];
@@ -657,7 +659,7 @@ int main(int argc, char* argv[])
 				c->Print();
 		}
 	}
-	else if (_stricmp(command, "sub") == 0)
+	else if (strncasecmp(command, "sub", 3) == 0)
 	{
 		char* file_a = argv[2];
 		char* file_b = argv[3];
@@ -676,7 +678,7 @@ int main(int argc, char* argv[])
 				c->Print();
 		}
 	}
-	else if (_stricmp(command, "mul") == 0)
+	else if (strncasecmp(command, "mul", 3) == 0)
 	{
 		char* file_a = argv[2];
 		char* file_b = argv[3];
@@ -695,7 +697,7 @@ int main(int argc, char* argv[])
 				c->Print();
 		}
 	}
-	else if (_stricmp(command, "tra") == 0)
+	else if (strncasecmp(command, "tra", 3) == 0)
 	{
 		char* file_a = argv[2];
 		char* output = argv[3];
@@ -711,7 +713,7 @@ int main(int argc, char* argv[])
 				c->Print();
 		}
 	}
-	else if (_stricmp(command, "det") == 0)
+	else if (strncasecmp(command, "det", 3) == 0)
 	{
 		char* file_a = argv[2];
 		char* output = argv[3];
