@@ -130,7 +130,10 @@ public:
 		Node* current = head;//starts at head
 		while (current != NULL)
 		{
-			cout << current->Value << " ";//prints data in current
+			cout.setf(ios::fixed);
+			cout.setf(ios::showpoint);
+			cout.precision(1);
+			cout << (float)current->Value << " ";//prints data in current
 			current = current->next; //goes to next node
 		}
 		cout << endl;

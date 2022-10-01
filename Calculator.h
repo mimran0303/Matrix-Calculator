@@ -16,6 +16,11 @@ public:
 			cout << "The operation was not possible" << endl;
 			return NULL;
 		}
+		if (a->RowCount() != b->RowCount() || a->ColumnCount() != b->ColumnCount())
+		{
+			cout << "Row Count and Column Count should be same to be able to add" << endl;
+			return NULL;
+		}
 
 		int max_row = a->RowCount();
 		int max_column = a->ColumnCount();
@@ -35,6 +40,11 @@ public:
 		if (a == NULL || b == NULL)//special case
 		{
 			cout << "The operation was not possible" << endl;
+			return NULL;
+		}
+		if (a->RowCount() != b->RowCount() || a->ColumnCount() != b->ColumnCount())
+		{
+			cout << "Row Count and Column Count should be same to be able to subtract" << endl;
 			return NULL;
 		}
 
@@ -61,7 +71,7 @@ private:
 		return p;
 	}
 public:
-	static Matrix* Multiply(Matrix* a, Matrix* b)
+		static Matrix* Multiply(Matrix* a, Matrix* b)
 	{
 		int max_row = a->RowCount();
 		int max_column = a->ColumnCount();
@@ -80,7 +90,7 @@ public:
 	{
 		if (a == NULL )//special case
 		{
-			cout << "The operation was not possible" << endl;
+			cout << "The operation was not possible because matrix is null" << endl;
 			return NULL;
 		}
 
@@ -126,7 +136,7 @@ public:
 
 		if (max_row!=max_column||(max_row<=1 && max_column<=1))//special case, matrix must be square, therefore rows and columns must be equal
 		{
-			cout << "The operation was not possible" << endl;
+			cout << "The operation was not possible because Row Count and Column Count has to be same" << endl;
 			return NULL;
 		}
 		
@@ -135,7 +145,7 @@ public:
 			Matrix*b=a->Clone();
 			b->DeleteRow(0);
 			b->DeleteColumns(j);
-			int exp = pow(-1, (j + 2));
+			int exp = (int)pow(-1, (j + 2));
 			int targetNumber = a->CellAt(0, j)->Value;
 			int cofactor = GetCofactor(b);
 			result = result + exp * targetNumber * cofactor; // -1 or 1 * value at target node in row 0 * Cofactor

@@ -10,9 +10,16 @@
 #include "_TestLinkedList.h"
 #include<sstream>
 #include "_TestMatrix.h"
+#include "Main.h"
 
 using namespace std;
 const bool verbose = true;
+
+void help(char* argv[])
+{
+	cout << "Error: This program needs 3 or 4 arguments for input and output files." << endl;
+	cout << "Usage: " << /* program name */argv[0] << " [command: add|sub|mul|tra|det] [input matrix] [input matrix] [output matrix]" << endl;
+}
 
 char* ConvertToCharPointer(string& s)
 {
@@ -81,8 +88,7 @@ int main(int argc, char* argv[])
 {
 	if (argc <= 3)
 	{
-		cout << "Error: This program needs 3 or 4 arguments for input and output files." << endl;
-		cout << "Usage: " << /* program name */argv[0] << " [command: add|sub|mul|tra|det] [input matrix] [input matrix] [output matrix]" << endl;
+		help(argv);
 		return -1;
 	}
 
@@ -111,7 +117,8 @@ int main(int argc, char* argv[])
 		if (verbose) {
 			a->Print();
 			b->Print();
-			c->Print();
+			if (c != NULL) 
+				c->Print();
 		}
 	}
 	else if (strcmp(command, "sub") == 0)
@@ -122,7 +129,8 @@ int main(int argc, char* argv[])
 		if (verbose) {
 			a->Print();
 			b->Print();
-			c->Print();
+			if (c != NULL)
+				c->Print();
 		}
 	}
 	else if (strcmp(command, "mul") == 0)
@@ -133,7 +141,8 @@ int main(int argc, char* argv[])
 		if (verbose) {
 			a->Print();
 			b->Print();
-			c->Print();
+			if (c != NULL)
+				c->Print();
 		}
 	}
 	else if (strcmp(command, "tra") == 0)
@@ -142,7 +151,8 @@ int main(int argc, char* argv[])
 		Matrix* c = Calculator::Transpose(a);
 		if (verbose) {
 			a->Print();
-			c->Print();
+			if (c != NULL)
+				c->Print();
 		}
 	}
 	else if (strcmp(command, "det") == 0)
@@ -151,7 +161,14 @@ int main(int argc, char* argv[])
 		int det = Calculator::Determinant(a);
 		if (verbose) {
 			a->Print();
-			cout << det << endl;
+			cout.setf(ios::fixed);
+			cout.setf(ios::showpoint);
+			cout.precision(1);
+			cout << (float)det << endl;
 		}
+	}
+	else
+	{
+		help(argv);
 	}
 }
