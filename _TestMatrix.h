@@ -6,24 +6,31 @@
 
 Matrix* CreateMatrix()
 {
-	cout << "Initialized " << endl;
-	cout << endl;
 	Matrix* m = new Matrix();
 
 	MatrixNode* n1 = m->AddRow();
-	n1->linkedlist->AddColumn(5);
-	n1->linkedlist->AddColumn(3);
-	n1->linkedlist->AddColumn(2);
+	n1->Columns()->AddColumn(5);
+	n1->Columns()->AddColumn(3);
+	n1->Columns()->AddColumn(2);
+	n1->Columns()->AddColumn(2);
 
 	MatrixNode* n2 = m->AddRow();
-	n2->linkedlist->AddColumn(1);
-	n2->linkedlist->AddColumn(2);
-	n2->linkedlist->AddColumn(5);
+	n2->Columns()->AddColumn(1);
+	n2->Columns()->AddColumn(2);
+	n2->Columns()->AddColumn(5);
+	n2->Columns()->AddColumn(2);
 
 	MatrixNode* n3 = m->AddRow();
-	n3->linkedlist->AddColumn(2);
-	n3->linkedlist->AddColumn(9);
-	n3->linkedlist->AddColumn(1);
+	n3->Columns()->AddColumn(2);
+	n3->Columns()->AddColumn(9);
+	n3->Columns()->AddColumn(1);
+	n3->Columns()->AddColumn(2);
+
+	MatrixNode* n4 = m->AddRow();
+	n4->Columns()->AddColumn(2);
+	n4->Columns()->AddColumn(9);
+	n4->Columns()->AddColumn(1);
+	n4->Columns()->AddColumn(2);
 
 	return m;
 }

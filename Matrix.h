@@ -18,6 +18,11 @@ public:
 		next = NULL;
 	}
 
+	LinkedList* Columns()
+	{
+		return linkedlist;
+	}
+
 	MatrixNode* Clone()
 	{
 		MatrixNode* copy = new MatrixNode(); //new node
@@ -171,12 +176,18 @@ public:
 
 	void Print()
 	{
+		cout.setf(ios::fixed);
+		cout.setf(ios::showpoint);
+		cout.precision(1);
+
+		cout << "----------- Matrix ------------ " << endl;
 		MatrixNode* current = head;//starts at head
 		while (current != NULL)
 		{
 			current->linkedlist->Print();
 			current = current->next; //goes to next node
 		}
+		cout << ">>>> RowCount=" << RowCount() << ", ColumnCount=" << ColumnCount() << endl;
 	}
 
 	Matrix* Clone()
