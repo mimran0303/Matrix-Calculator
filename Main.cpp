@@ -18,7 +18,9 @@ const bool verbose = true;
 void help(char* argv[])
 {
 	cout << "Error: This program needs 3 or 4 arguments for input and output files." << endl;
-	cout << "Usage: " << /* program name */argv[0] << " [command: add|sub|mul|tra|det] [input matrix] [input matrix] [output matrix]" << endl;
+	cout << "Usage 1: " << /* program name */argv[0] << " [command: add|sub|mul] [input matrix] [input matrix] [output matrix]" << endl;
+	cout << "Usage 2: " << /* program name */argv[0] << " [command: tra] [input matrix] [output matrix]" << endl;
+	cout << "Usage 3: " << /* program name */argv[0] << " [command: det] [input matrix] [output file]" << endl;
 }
 
 char* ConvertToCharPointer(string& s)
@@ -75,6 +77,32 @@ void WriteToFile(string filename, Matrix* m)
 {
 	ofstream filewrite;
 	filewrite.open(filename);
+	if (filewrite.is_open()) {
+		filewrite.setf(ios::fixed);
+		filewrite.setf(ios::showpoint);
+		filewrite.precision(1);
+		for (int i = 0; i < m->RowCount(); i++)
+		{
+			for (int j = 0; j < m->ColumnCount(); j++)
+			{
+				filewrite << (float)m->CellAt(i, j)->Value;
+				if (j < m->ColumnCount() - 1)
+					filewrite << " ";
+			}
+			filewrite << endl;
+		}
+	}
+	filewrite.close();
+}
+
+void WriteToFile(string filename, int i)
+{
+	ofstream filewrite;
+	filewrite.open(filename);
+	filewrite.setf(ios::fixed);
+	filewrite.setf(ios::showpoint);
+	filewrite.precision(1);
+	filewrite << (float)i << endl;
 	filewrite.close();
 }
 
@@ -112,18 +140,21 @@ int main(int argc, char* argv[])
 		if (argc >= 5) cout << "argv[4] => " << argv[4] << endl;
 	}
 
-	// assign command line arguments to local variables
 	char* program = argv[0];
 	char* command = argv[1];
-	char* file_a = argv[2];
-	char* file_b = argv[3];
-	char* output = argv[4];
 
-	if (_stricmp(command, "add") == 0 /* equal */)
+	if (_stricmp(command, "add") == 0)
 	{
+		char* file_a = argv[2];
+		char* file_b = argv[3];
+		char* output = argv[4];
+
 		Matrix* a = ReadMatrixFile(file_a);
 		Matrix* b = ReadMatrixFile(file_b);
 		Matrix* c = Calculator::AddMatrixes(a, b);
+
+		WriteToFile(output, c);
+
 		if (verbose) {
 			a->Print();
 			b->Print();
@@ -133,9 +164,16 @@ int main(int argc, char* argv[])
 	}
 	else if (_stricmp(command, "sub") == 0)
 	{
+		char* file_a = argv[2];
+		char* file_b = argv[3];
+		char* output = argv[4];
+
 		Matrix* a = ReadMatrixFile(file_a);
 		Matrix* b = ReadMatrixFile(file_b);
 		Matrix* c = Calculator::SubMatrixes(a, b);
+
+		WriteToFile(output, c);
+
 		if (verbose) {
 			a->Print();
 			b->Print();
@@ -145,9 +183,16 @@ int main(int argc, char* argv[])
 	}
 	else if (_stricmp(command, "mul") == 0)
 	{
+		char* file_a = argv[2];
+		char* file_b = argv[3];
+		char* output = argv[4];
+
 		Matrix* a = ReadMatrixFile(file_a);
 		Matrix* b = ReadMatrixFile(file_b);
 		Matrix* c = Calculator::Multiply(a, b);
+
+		WriteToFile(output, c);
+
 		if (verbose) {
 			a->Print();
 			b->Print();
@@ -157,8 +202,14 @@ int main(int argc, char* argv[])
 	}
 	else if (_stricmp(command, "tra") == 0)
 	{
+		char* file_a = argv[2];
+		char* output = argv[3];
+
 		Matrix* a = ReadMatrixFile(file_a);
 		Matrix* c = Calculator::Transpose(a);
+
+		WriteToFile(output, c);
+
 		if (verbose) {
 			a->Print();
 			if (c != NULL)
@@ -167,8 +218,14 @@ int main(int argc, char* argv[])
 	}
 	else if (_stricmp(command, "det") == 0)
 	{
+		char* file_a = argv[2];
+		char* output = argv[3];
+
 		Matrix* a = ReadMatrixFile(file_a);
 		int det = Calculator::Determinant(a);
+
+		WriteToFile(output, det);
+
 		if (verbose) {
 			a->Print();
 			cout.setf(ios::fixed);
