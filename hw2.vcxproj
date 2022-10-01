@@ -145,7 +145,6 @@
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="Main.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="_TestLinkedList.h" />
     <ClInclude Include="_TestMatrix.h" />
