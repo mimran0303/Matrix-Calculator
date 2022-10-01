@@ -61,31 +61,40 @@ public:
 		return c;
 	}
 private:
-	static int FindProduct(Matrix* a, Matrix* b, int rowofa, int colofb)
+	static int FindProduct(Matrix* a, int row_a, Matrix* b, int col_b)
 	{
 		int p = 0;
-		for (int r=0; r<a->ColumnCount(); r++)
+		for (int n=0; n<a->ColumnCount() /* or b->ColumnCount() must be same */; n++)
 		{
-			p = p + a->CellAt(rowofa,r)->Value * b->CellAt(r,colofb)->Value;
+			p = p + a->CellAt(row_a,n)->Value * b->CellAt(n, col_b)->Value;
 		}
 		return p;
 	}
 public:
-		static Matrix* Multiply(Matrix* a, Matrix* b)
+	static Matrix* Multiply(Matrix* a, Matrix* b)
 	{
-		int max_row = a->RowCount();
-		int max_column = a->ColumnCount();
-		
-		Matrix* result = new Matrix(max_row, max_column);
-		for (int r=0;r<max_row;r++)
+		if (a == NULL || b == NULL)//special case
 		{
-			for (int c=0;c<max_column;c++)
+			cout << "The operation was not possible" << endl;
+			return NULL;
+		}
+		if (a->ColumnCount() != b->RowCount())
+		{
+			cout << "Column Count or first matrix should be same as Row Count of second matrix" << endl;
+			return NULL;
+		}
+
+		Matrix* result = new Matrix(a->RowCount(), b->ColumnCount());
+		for (int r = 0; r < a->RowCount(); r++)
+		{
+			for (int c = 0; c < b->ColumnCount(); c++)
 			{
-				result->CellAt(r, c)->Value = FindProduct(a,b,r,c);
+				result->CellAt(r, c)->Value = FindProduct(a, r, b, c);
 			}
 		}
 		return result;
 	}
+
 	static Matrix* Transpose(Matrix* a)
 	{
 		if (a == NULL )//special case

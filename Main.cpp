@@ -29,6 +29,13 @@ char* ConvertToCharPointer(string& s)
 	return str;
 }
 
+string trim(string s)
+{
+	s.erase(s.find_last_not_of(' ') + 1); //suffixing spaces
+	s.erase(0, s.find_first_not_of(' ')); //prefixing spaces
+	return s;
+}
+
 void Parse(string str, MatrixNode* n)
 {
 	char* cstr = ConvertToCharPointer(str);
@@ -52,6 +59,9 @@ Matrix* ReadMatrixFile(string filename)
 		Matrix* m = new Matrix();
 		while (getline(fileread, line))
 		{
+			line = trim(line);
+			if (line.length() == 0)
+				continue;
 			MatrixNode* n1 = m->AddRow();
 			Parse(line, n1);
 		}
@@ -109,7 +119,7 @@ int main(int argc, char* argv[])
 	char* file_b = argv[3];
 	char* output = argv[4];
 
-	if (strcmp(command, "add") == 0 /* equal */)
+	if (_stricmp(command, "add") == 0 /* equal */)
 	{
 		Matrix* a = ReadMatrixFile(file_a);
 		Matrix* b = ReadMatrixFile(file_b);
@@ -121,7 +131,7 @@ int main(int argc, char* argv[])
 				c->Print();
 		}
 	}
-	else if (strcmp(command, "sub") == 0)
+	else if (_stricmp(command, "sub") == 0)
 	{
 		Matrix* a = ReadMatrixFile(file_a);
 		Matrix* b = ReadMatrixFile(file_b);
@@ -133,7 +143,7 @@ int main(int argc, char* argv[])
 				c->Print();
 		}
 	}
-	else if (strcmp(command, "mul") == 0)
+	else if (_stricmp(command, "mul") == 0)
 	{
 		Matrix* a = ReadMatrixFile(file_a);
 		Matrix* b = ReadMatrixFile(file_b);
@@ -145,7 +155,7 @@ int main(int argc, char* argv[])
 				c->Print();
 		}
 	}
-	else if (strcmp(command, "tra") == 0)
+	else if (_stricmp(command, "tra") == 0)
 	{
 		Matrix* a = ReadMatrixFile(file_a);
 		Matrix* c = Calculator::Transpose(a);
@@ -155,7 +165,7 @@ int main(int argc, char* argv[])
 				c->Print();
 		}
 	}
-	else if (strcmp(command, "det") == 0)
+	else if (_stricmp(command, "det") == 0)
 	{
 		Matrix* a = ReadMatrixFile(file_a);
 		int det = Calculator::Determinant(a);
